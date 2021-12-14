@@ -1,0 +1,5 @@
+com\automation\pages\BasePage.class
+com\automation\constants\Constant.class
+com\automation\common\Mappings.class
+com\automation\utils\FileUtils.class
+com\automation\pages\RegistrationPage.class
