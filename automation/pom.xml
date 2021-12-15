@@ -103,6 +103,7 @@
 				<configuration>
 					<systemPropertyVariables>
 						<browser>chrome</browser>
+						<platform>windows</platform>
 					</systemPropertyVariables>
 					<systemPropertiesFile>src/main/java/com/automation/config/envConfig.properties</systemPropertiesFile>
 					<parallel>methods</parallel>

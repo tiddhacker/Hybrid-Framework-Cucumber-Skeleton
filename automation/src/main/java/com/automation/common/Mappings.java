@@ -32,6 +32,12 @@ public class Mappings {
 		switch (System.getProperty("browser").toUpperCase()) {
 		case "CHROME":
 			ChromeOptions options = new ChromeOptions();
+			if(System.getProperty("platform").equalsIgnoreCase("linux")) {
+			options.addArguments("--headless");
+			options.addArguments("--no-sandbox");
+			options.addArguments("window-size=1920x1080");
+			options.addArguments("--disable-dev-shm-usage");
+			}
 			options.addArguments("--incognito");
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(options);
