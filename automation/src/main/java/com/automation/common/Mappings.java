@@ -2,16 +2,16 @@ package com.automation.common;
 
 import java.time.Duration;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.automation.constants.Constant;
+import com.automation.pages.APIHelper;
 import com.automation.pages.BasePage;
 import com.automation.pages.RegistrationPage;
 import com.automation.utils.FileUtils;
@@ -26,6 +26,7 @@ public class Mappings {
 	public static FileUtils fileutils = new FileUtils();
 	public static RegistrationPage registrationPage;
 	public static BasePage basepage;
+	public static APIHelper apihelper;
 	
 	public WebDriver initDriver() {
 		try {
@@ -73,8 +74,8 @@ public class Mappings {
 	}
 	
 	public void initUtils() {
-		log = Logger.getLogger(Mappings.class);
-		PropertyConfigurator.configure(System.getProperty("user.dir")+Constant.CONFIG_FILE_PROPERTIES_DIRECTORY+"envConfig.properties");
+		log = LoggerFactory.getLogger(Mappings.class);
+		apihelper = new APIHelper();
 	}
 	
 	public void applicationSetup() {

@@ -19,6 +19,11 @@ public class Hooks extends Mappings {
 		applicationSetup();
 		initUIClass();
 	}
+	
+	@Before("@API")
+	public void setupAPI() {
+		initUtils();	
+	}
 
 	@After("@UI")
 	public void tearDown(Scenario scenario) {

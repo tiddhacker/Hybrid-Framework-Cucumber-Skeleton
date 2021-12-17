@@ -1,4 +1,5 @@
 com\automation\pages\BasePage.class
+com\automation\pages\APIHelper.class
 com\automation\constants\Constant.class
 com\automation\common\Mappings.class
 com\automation\utils\FileUtils.class

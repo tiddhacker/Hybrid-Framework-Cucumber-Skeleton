@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Automation Report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Dec 15, 2021 05:56:38 PM</span></a>
+<a href="#"><span class="badge badge-primary">Dec 17, 2021 01:06:38 PM</span></a>
 </li>
 </ul>
 </div>
@@ -45,6 +45,11 @@
 <li class="nav-item dropdown" onclick="toggleView('test-view')">
 <a id="nav-test" class="dropdown-toggle" href="#">
 <span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('exception-view')">
+<a id="nav-exception" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bug"></i></span>
 </a>
 </li>
 <li class="nav-item dropdown" onclick="toggleView('category-view')">
@@ -71,7 +76,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -79,36 +84,36 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@Registration</a><a class="dropdown-item" href="#">@UI</a>
+<a class="dropdown-item" href="#">@API</a><a class="dropdown-item" href="#">@pathParameter</a><a class="dropdown-item" href="#">@queryParameter</a><a class="dropdown-item" href="#">@delayedResponse</a>
 </ul>
 </li>
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="1"
+        <li class="test-item"  status="fail" test-id="1"
           author=""
-          tag="@UI"
+          tag="@API"
           device="">
           <div class="test-detail">
-            <p class="name">Parallel feature</p>
+            <p class="name">API Automation Demo</p>
             <p class="text-sm">
-              <span>5:56:38 PM</span> / <span>00:00:09:033</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>1:06:38 PM</span> / <span>00:00:14:878</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Parallel feature</h5>
-<span class='badge badge-success'>12.15.2021 5:56:38 PM</span>
-<span class='badge badge-danger'>12.15.2021 5:56:47 PM</span>
-<span class='badge badge-default'>00:00:09:033</span>
+<h5 class="test-status text-fail">API Automation Demo</h5>
+<span class='badge badge-success'>12.17.2021 1:06:38 PM</span>
+<span class='badge badge-danger'>12.17.2021 1:06:53 PM</span>
+<span class='badge badge-default'>00:00:14:878</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-15"><span class="badge badge-pill badge-default">@UI</span></div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">@API</span></div>
 <div class="m-t-10 m-l-5"></div>
 </div>
 </div>
@@ -116,96 +121,419 @@
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Parallel Scenario</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>GET call</div>
       </div>
     </div>
-        <div class="collapse">
-          <div class="card-body">
-              <div class="step pass-bg" title="stepDefinition.RegisterSteps.user_open_the_application()">
-                <span>Given user open the application</span>
-      <div>Screenshot:
-      </div>
-      <div><br>
-      </div>
-      <div><a target="_blank",href=imgs/Wed_Dec_15_17_56_46_IST_2021.jpg><img src=imgs/Wed_Dec_15_17_56_46_IST_2021.jpg style="width: 30%; height: 30%"></img></a>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="3"><span class="badge log pass-bg mr-2">Pass</span>GET call</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given baseURI is set</span>
+      <div>Setting base URI -> https://reqres.in/
       </div>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefinition.RegisterSteps.navigates_to_register_page()">
-                <span>Then navigates to register page</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And path parameter "/api/users/2" is set</span>
+      <div>Path parameter is :/api/users/2
+      </div>
+      <div>Response is -
+      </div>
+      <div>{
+    "data": {
+        "id": 2,
+        "email": "janet.weaver@reqres.in",
+        "first_name": "Janet",
+        "last_name": "Weaver",
+        "avatar": "https://reqres.in/img/faces/2-image.jpg"
+    },
+    "support": {
+        "url": "https://reqres.in/#support-heading",
+        "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+    }
+}
+      </div>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefinition.RegisterSteps.fills_the_registration_form_details()">
-                <span>And fills the registration form details</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And validates the response "200"</span>
       <div>
       </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And validates response body id "2"</span>
+      <div>
+      </div>
+                  </div>
               </div>
-          </div>
+            </div>
         </div>
   </div>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="pass" test-id="3"
-          author=""
-          tag="@UI"
-          device="">
-          <div class="test-detail">
-            <p class="name">Registration feature</p>
-            <p class="text-sm">
-              <span>5:56:38 PM</span> / <span>00:00:08:331</span>
-              <span class="badge pass-bg log float-right">Pass</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-pass">Registration feature</h5>
-<span class='badge badge-success'>12.15.2021 5:56:38 PM</span>
-<span class='badge badge-danger'>12.15.2021 5:56:47 PM</span>
-<span class='badge badge-default'>00:00:08:331</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
-<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
-<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
-</div>
-<div class="m-t-15"><span class="badge badge-pill badge-default">@UI</span></div>
-<div class="m-t-10 m-l-5"></div>
-</div>
-</div>
-<div class="accordion mt-4">
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="4"><span class="badge log pass-bg mr-2">Pass</span>Fill the registration form with all details</div>
+        <div class="node" id="9"><span class="badge log fail-bg mr-2">Fail</span>GET call with query parameter in request</div>
       </div>
     </div>
-        <div class="collapse">
-          <div class="card-body">
-              <div class="step pass-bg" title="stepDefinition.RegisterSteps.user_open_the_application()">
-                <span>Given user open the application</span>
-      <div>Screenshot:
-      </div>
-      <div><br>
-      </div>
-      <div><a target="_blank",href=imgs/Wed_Dec_15_17_56_46_IST_2021.jpg><img src=imgs/Wed_Dec_15_17_56_46_IST_2021.jpg style="width: 30%; height: 30%"></img></a>
+        <div class="scenario_outline ">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="10"><span class="badge log fail-bg mr-2">Fail</span>GET call with query parameter in request</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 ">
+                  <div class="step pass-bg">
+                    <span>Given baseURI is set</span>
+      <div>Setting base URI -> https://reqres.in/
       </div>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefinition.RegisterSteps.navigates_to_register_page()">
-                <span>Then navigates to register page</span>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And query parameter "q=London,uk&appid=2b1fd2d7f77ccf1b7de9b441571b39b8" is set</span>
+      <div>Query Parameter number 0 is --> q=London,uk
+      </div>
+      <div>Query Parameter number 1 is --> appid=2b1fd2d7f77ccf1b7de9b441571b39b8
+      </div>
       <div>
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefinition.RegisterSteps.fills_the_registration_form_details()">
-                <span>And fills the registration form details</span>
-      <div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And path parameter "/weather" is set</span>
+      <div>Path parameter is :/weather
       </div>
+      <div>Response is -
+      </div>
+      <div><html lang="en">
+  <head>
+    <script>
+            ;(function (w, d, s, l, i) {
+                w[l] = w[l] || []
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js',
+                })
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&amp;amp;l=' + l : ''
+                j.async = true
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+                f.parentNode.insertBefore(j, f)
+            })(window, document, 'script', 'dataLayer', 'GTM-KB622KF')
+        </script>
+    <script src="https://js.stripe.com/v3/"/>
+  </head>
+  <body>
+
+    &lt;meta charset="utf-8"/&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/&gt;
+    &lt;meta name="description" content="A hosted REST-API ready to respond to your AJAX requests"/&gt;
+    &lt;title&gt;
+            Reqres - A hosted REST-API ready to respond to your AJAX requests
+        
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/css/app.css"/>
+    <script type="text/javascript" src="//m.servedby-buysellads.com/monetization.custom.js"/>
+  </body>
+  <body>
+    <div class="header-content">
+      <header class="main-header">
+        <section class="wrap">
+          <h1 class="logo">
+            <a shape="rect" href="/">Req?|?Res</a>
+          </h1>
+        </section>
+      </header>
+      <main class="the-sell">
+        <div class="wrap">
+          <h2 class="tagline">
+                        Test your front-end against a real API
+                    </h2>
+          <section class="key-sells">
+            <div class="sell">
+              <div class="v-center">
+                <h3>Fake data</h3>
+                <p>
+                                    No more tedious sample data creation, we've
+                                    got it covered.
+                                </p>
               </div>
+              <i class="fa fa-cloud-download"/>
+            </div>
+            <div class="sell">
+              <div class="v-center">
+                <h3>Real responses</h3>
+                <p>
+                                    Develop with real response codes. GET, POST,
+                                    PUT &amp; DELETE supported.
+                                </p>
+              </div>
+              <i class="fa fa-code"/>
+            </div>
+            <div class="sell">
+              <div class="v-center">
+                <h3>Always-on</h3>
+                <p>
+
+
+                                    24/7                                     <strong>
+                    <em>free</em>
+                  </strong>
+
+ access
+                                    in your development phases. Go nuts.
+                                                                </p>
+              </div>
+              <i class="fa fa-toggle-on"/>
+            </div>
+          </section>
+          <h2 class="tagline">
+                        A hosted REST-API ready to respond to your AJAX
+                        requests.
+                    </h2>
+          <div class="t-center main-arrow">
+            <i class="fa fa-arrow-circle-down"/>
           </div>
+          <script id="_carbonads_js" async="async" type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7D6K3E&amp;placement=reqresin"/>
+        </div>
+      </main>
+    </div>
+    <div class="container">404</div>
+    <footer>
+      <div class="wrap">
+        <hr class="dark"/>
+        <p class="t-center">
+
+
+                    Made for developers and designers by
+                                        <a shape="rect" href="https://benhowdle.im">Ben Howdle</a>
+        </p>
+      </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.3/fastclick.min.js"/>
+
+    &lt;script src="/js/app.js"/&gt;
+    &lt;script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-174008107-1"/&gt;
+    &lt;script&gt;
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
+
+            gtag('config', 'UA-174008107-1')
+        
+        <script>
+            ;(function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r
+                ;(i[r] =
+                    i[r] ||
+                    function () {
+                        ;(i[r].q = i[r].q || []).push(arguments)
+                    }),
+                    (i[r].l = 1 * new Date())
+                ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
+                a.async = 1
+                a.src = g
+                m.parentNode.insertBefore(a, m)
+            })(
+                window,
+                document,
+                'script',
+                '//www.google-analytics.com/analytics.js',
+                'ga'
+            )
+
+            ga('create', 'UA-55888877-1', 'auto')
+            ga('send', 'pageview')
+        </script>
+    <script>
+            ;(function () {
+                if (typeof _bsa !== 'undefined' &amp;amp;&amp;amp; _bsa) {
+                    _bsa.init(
+                        'custom',
+                        'CEBIP53J',
+                        'placement:reqresin-sponsor',
+                        {
+                            target: '#impeccable-js',
+                            template: `
+        &amp;lt;a href="##link##" rel="sponsored noopener" target="_blank" title="##company## — ##tagline##"&amp;gt;
+        &amp;lt;img src="##logo##" style="background-color: ##backgroundColor##"&amp;gt;
+        &amp;lt;div class="sponsor-description"&amp;gt;##description##&amp;lt;/div&amp;gt;
+        &amp;lt;div class="sponsor-cta" style="background-color: ##backgroundColor##; color: ##textColor##"&amp;gt;##callToAction##&amp;lt;/div&amp;gt;
+        &amp;lt;/a&amp;gt;
+        `,
+                        }
+                    )
+                }
+            })()
+        </script>
+  </body>
+</html>
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step fail-bg">
+                    <span>And validates the response "200"</span>
+      <div>
+        <textarea disabled class="code-block">java.lang.AssertionError: 1 expectation failed.
+Expected status code <200> but was <404>.
+
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:72)
+	at org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:59)
+	at org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:84)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:59)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:263)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:277)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure.validate(ResponseSpecificationImpl.groovy:493)
+	at io.restassured.internal.ResponseSpecificationImpl$HamcrestAssertionClosure$validate$1.call(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.validateResponseIfRequired(ResponseSpecificationImpl.groovy:674)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.codehaus.groovy.runtime.callsite.PlainObjectMetaMethodSite.doInvoke(PlainObjectMetaMethodSite.java:43)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite$PogoCachedMethodSiteNoUnwrapNoCoerce.invoke(PogoMetaMethodSite.java:193)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaMethodSite.callCurrent(PogoMetaMethodSite.java:61)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:185)
+	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:126)
+	at io.restassured.specification.ResponseSpecification$statusCode$0.callCurrent(Unknown Source)
+	at io.restassured.internal.ResponseSpecificationImpl.statusCode(ResponseSpecificationImpl.groovy:134)
+	at io.restassured.internal.ValidatableResponseOptionsImpl.statusCode(ValidatableResponseOptionsImpl.java:89)
+	at io.restassured.internal.ValidatableResponseImpl.super$2$statusCode(ValidatableResponseImpl.groovy)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1268)
+	at org.codehaus.groovy.runtime.ScriptBytecodeAdapter.invokeMethodOnSuperN(ScriptBytecodeAdapter.java:144)
+	at io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy:142)
+	at io.restassured.internal.ValidatableResponseImpl.statusCode(ValidatableResponseImpl.groovy)
+	at com.automation.pages.APIHelper.validateStatusCode(APIHelper.java:68)
+	at stepDefinition.APISteps.validates_the_response(APISteps.java:28)
+	at ?.validates the response "200"(file:///C:/Users/lenovo/Desktop/PHPTravels/Hybrid-Framework-Cucumber-Skeleton/automation/src/test/resources/features/api.feature:20)
+</textarea>
+      
+      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="16"><span class="badge log pass-bg mr-2">Pass</span>GET call test delayed response</div>
+      </div>
+    </div>
+        <div class="scenario_outline collapse">
+            <div class="card-body l1">
+              <div class="card-header">
+                <div class="card-title outline-child">
+                  <div class="node" id="17"><span class="badge log pass-bg mr-2">Pass</span>GET call test delayed response</div>
+                </div>
+              </div>
+              <div class="card-body mt-3 collapse">
+                  <div class="step pass-bg">
+                    <span>Given baseURI is set</span>
+      <div>Setting base URI -> https://reqres.in/
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And query parameter "delay=10" is set</span>
+      <div>Query Parameter number is --> delay=10
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And path parameter "/api/users" is set</span>
+      <div>Path parameter is :/api/users
+      </div>
+      <div>Response is -
+      </div>
+      <div>{
+    "page": 1,
+    "per_page": 6,
+    "total": 12,
+    "total_pages": 2,
+    "data": [
+        {
+            "id": 1,
+            "email": "george.bluth@reqres.in",
+            "first_name": "George",
+            "last_name": "Bluth",
+            "avatar": "https://reqres.in/img/faces/1-image.jpg"
+        },
+        {
+            "id": 2,
+            "email": "janet.weaver@reqres.in",
+            "first_name": "Janet",
+            "last_name": "Weaver",
+            "avatar": "https://reqres.in/img/faces/2-image.jpg"
+        },
+        {
+            "id": 3,
+            "email": "emma.wong@reqres.in",
+            "first_name": "Emma",
+            "last_name": "Wong",
+            "avatar": "https://reqres.in/img/faces/3-image.jpg"
+        },
+        {
+            "id": 4,
+            "email": "eve.holt@reqres.in",
+            "first_name": "Eve",
+            "last_name": "Holt",
+            "avatar": "https://reqres.in/img/faces/4-image.jpg"
+        },
+        {
+            "id": 5,
+            "email": "charles.morris@reqres.in",
+            "first_name": "Charles",
+            "last_name": "Morris",
+            "avatar": "https://reqres.in/img/faces/5-image.jpg"
+        },
+        {
+            "id": 6,
+            "email": "tracey.ramos@reqres.in",
+            "first_name": "Tracey",
+            "last_name": "Ramos",
+            "avatar": "https://reqres.in/img/faces/6-image.jpg"
+        }
+    ],
+    "support": {
+        "url": "https://reqres.in/#support-heading",
+        "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+    }
+}
+      </div>
+      <div>
+      </div>
+                  </div>
+                  <div class="step pass-bg">
+                    <span>And validates the response "200"</span>
+      <div>
+      </div>
+                  </div>
+              </div>
+            </div>
         </div>
   </div>
 </div>
@@ -220,11 +548,63 @@
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="test-wrapper row view category-view attributes-view">
+<div class="test-wrapper row view exception-view attributes-view">
+<div class="test-list">
+<div class="test-list-tools">
+<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+</div>
+<div class="test-list-wrapper scrollable">
+<ul class="test-list-item">
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log badge-danger'>1</span>
+</span>
+<p class="name">java.lang.AssertionError</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>java.lang.AssertionError</h4>
+<span status="fail" class='badge log badge-danger'>1 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>13:06:43 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='15'>And validates the response "200"</a>
+<div class="">
+<span class="badge badge-default">API Automation Demo.GET call with query parameter in request.And validates the response "200"</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="test-content scrollable">
+<div class="test-content-detail">
+<div class="detail-body"></div>
+</div>
+</div>
+</div><div class="test-wrapper row view category-view attributes-view">
 <div class="test-list">
 <div class="test-list-tools">
 <ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">2</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">4</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
@@ -232,13 +612,78 @@
 <div class="test-detail">
 <span class="meta">
 <span class='badge log pass-bg'>2</span>
+<span class='badge log badge-danger'>2</span>
 </span>
-<p class="name">@Registration</p>
+<p class="name">@API</p>
+<p class="duration text-sm">4 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@API</h4>
+<span status="pass" class='badge log pass-bg'>2 passed</span>
+<span status="fail" class='badge log badge-danger'>2 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>13:06:38 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1'>API Automation Demo</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>13:06:38 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='3'>GET call</a>
+<div class="">
+<span class="badge badge-default">API Automation Demo.GET call</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>13:06:42 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='10'>GET call with query parameter in request</a>
+<div class="">
+<span class="badge badge-default">API Automation Demo.GET call with query parameter in request</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>13:06:43 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='17'>GET call test delayed response</a>
+<div class="">
+<span class="badge badge-default">API Automation Demo.GET call test delayed response</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>2</span>
+</span>
+<p class="name">@pathParameter</p>
 <p class="duration text-sm">2 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@Registration</h4>
+<h4>@pathParameter</h4>
 <span status="pass" class='badge log pass-bg'>2 passed</span>
 </div>
 <table class='table table-sm mt-4'>
@@ -252,21 +697,21 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>17:56:38 PM</td>
+<td>13:06:38 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='2'>Parallel Scenario</a>
+<a href="#" class="linked" test-id='1' id='2'>GET call</a>
 <div class="">
-<span class="badge badge-default">Parallel feature.Parallel Scenario</span>
+<span class="badge badge-default">API Automation Demo.GET call</span>
 </div>
 </td>
 </tr>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>17:56:38 PM</td>
+<td>13:06:38 PM</td>
 <td>
-<a href="#" class="linked" test-id='3' id='4'>Fill the registration form with all details</a>
+<a href="#" class="linked" test-id='1' id='3'>GET call</a>
 <div class="">
-<span class="badge badge-default">Registration feature.Fill the registration form with all details</span>
+<span class="badge badge-default">API Automation Demo.GET call</span>
 </div>
 </td>
 </tr>
@@ -277,15 +722,61 @@
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>4</span>
+<span class='badge log badge-danger'>2</span>
 </span>
-<p class="name">@UI</p>
-<p class="duration text-sm">4 tests</p>
+<p class="name">@queryParameter</p>
+<p class="duration text-sm">2 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@UI</h4>
-<span status="pass" class='badge log pass-bg'>4 passed</span>
+<h4>@queryParameter</h4>
+<span status="fail" class='badge log badge-danger'>2 failed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>13:06:42 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='9'>GET call with query parameter in request</a>
+<div class="">
+<span class="badge badge-default">API Automation Demo.GET call with query parameter in request</span>
+</div>
+</td>
+</tr>
+<tr class="tag-test-status" status="fail">
+<td><span class="badge log fail-bg">Fail</span></td>
+<td>13:06:42 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='10'>GET call with query parameter in request</a>
+<div class="">
+<span class="badge badge-default">API Automation Demo.GET call with query parameter in request</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>2</span>
+</span>
+<p class="name">@delayedResponse</p>
+<p class="duration text-sm">2 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@delayedResponse</h4>
+<span status="pass" class='badge log pass-bg'>2 passed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -298,35 +789,21 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>17:56:38 PM</td>
+<td>13:06:43 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>Parallel feature</a>
-</td>
-</tr>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>17:56:38 PM</td>
-<td>
-<a href="#" class="linked" test-id='1' id='2'>Parallel Scenario</a>
+<a href="#" class="linked" test-id='1' id='16'>GET call test delayed response</a>
 <div class="">
-<span class="badge badge-default">Parallel feature.Parallel Scenario</span>
+<span class="badge badge-default">API Automation Demo.GET call test delayed response</span>
 </div>
 </td>
 </tr>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>17:56:38 PM</td>
+<td>13:06:43 PM</td>
 <td>
-<a href="#" class="linked" test-id='3' id='3'>Registration feature</a>
-</td>
-</tr>
-<tr class="tag-test-status" status="pass">
-<td><span class="badge log pass-bg">Pass</span></td>
-<td>17:56:38 PM</td>
-<td>
-<a href="#" class="linked" test-id='3' id='4'>Fill the registration form with all details</a>
+<a href="#" class="linked" test-id='1' id='17'>GET call test delayed response</a>
 <div class="">
-<span class="badge badge-default">Registration feature.Fill the registration form with all details</span>
+<span class="badge badge-default">API Automation Demo.GET call test delayed response</span>
 </div>
 </td>
 </tr>
@@ -347,25 +824,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Dec 15, 2021 05:56:38 PM</h3>
+<h3>Dec 17, 2021 01:06:38 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Dec 15, 2021 05:56:47 PM</h3>
+<h3>Dec 17, 2021 01:06:53 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Features Passed</p>
-<h3>2</h3>
+<h3>0</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Features Failed</p>
-<h3>0</h3>
+<h3>1</h3>
 </div></div>
 </div>
 </div>
@@ -381,12 +858,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'>
-<b>2</b> features passed
+<div><small data-tooltip='0%'>
+<b>0</b> features passed
 </small>
 </div>
 <div>
-<small data-tooltip='0%'><b>0</b> features failed,
+<small data-tooltip='100%'><b>1</b> features failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -404,9 +881,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>2</b> scenarios passed</small></div>
+<div><small data-tooltip='66%'><b>2</b> scenarios passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> scenarios failed,
+<small data-tooltip='33%'><b>1</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -424,9 +901,9 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>6</b> steps passed</small></div>
+<div><small data-tooltip='91%'><b>11</b> steps passed</small></div>
 <div>
-<small data-tooltip='0%'><b>0</b> steps failed,
+<small data-tooltip='8%'><b>1</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
 </small>
 </div>
@@ -443,7 +920,7 @@
 </div></div>
 <script>
 var timeline = {
-"Parallel feature":9.033,"Registration feature":8.331
+"API Automation Demo":14.878
 };
 </script>
 <div class="row">
@@ -453,7 +930,15 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@Registration</td>
+<td>@API</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>@pathParameter</td>
 <td>2</td>
 <td>0</td>
 <td>0</td>
@@ -461,8 +946,16 @@ var timeline = {
 <td>100%</td>
 </tr>
 <tr>
-<td>@UI</td>
-<td>4</td>
+<td>@queryParameter</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>@delayedResponse</td>
+<td>2</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -477,19 +970,19 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 2,
-failParent: 0,
+passParent: 0,
+failParent: 1,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
 passChild: 2,
-failChild: 0,
+failChild: 1,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 6,
-failGrandChild: 0,
+passGrandChild: 11,
+failGrandChild: 1,
 warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
