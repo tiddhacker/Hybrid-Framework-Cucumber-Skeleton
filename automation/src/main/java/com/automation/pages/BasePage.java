@@ -55,7 +55,7 @@ public class BasePage extends Mappings {
 	}
 		
 		public static String returnScreenshotName() {
-			return ("imgs/"+screenshotname).toString();
+			return ("./imgs/"+screenshotname).toString();
 		}
 		
 		private static BufferedImage scaleImage(BufferedImage bufferedImage, int size) {
