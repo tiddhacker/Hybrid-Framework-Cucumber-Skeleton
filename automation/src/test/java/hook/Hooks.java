@@ -22,17 +22,22 @@ public class Hooks extends Mappings {
 	
 	@Before("@API")
 	public void setupAPI() {
+		initUIClass();
+		initUIClass();
 		initUtils();	
 	}
 
-	@After("@UI")
+	@After("@UI or @API")
 	public void tearDown(Scenario scenario) {
 		if (getDriver() != null && scenario.isFailed()) {
 			log.error("*******************" + "Scenario Failed" + "*******************");
 			closeBrowser();
+			//ZipUtil.zipReport();
 		} else if (getDriver() != null && scenario.isFailed()==false) {
 			log.info("*******************" + "Scenario Passed ! Executing close browser" + "*******************");
 			closeBrowser();
+			//ZipUtil.zipReport();
 		}
 	}
+	
 }

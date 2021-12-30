@@ -1,6 +1,7 @@
+com\automation\utils\ZipUtil.class
+com\automation\common\Mappings.class
+com\automation\pages\RegistrationPage.class
 com\automation\pages\BasePage.class
 com\automation\pages\APIHelper.class
 com\automation\constants\Constant.class
-com\automation\common\Mappings.class
 com\automation\utils\FileUtils.class
-com\automation\pages\RegistrationPage.class
