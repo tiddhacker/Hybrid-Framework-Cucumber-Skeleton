@@ -14,7 +14,9 @@ import org.slf4j.LoggerFactory;
 import com.automation.pages.APIHelper;
 import com.automation.pages.BasePage;
 import com.automation.pages.RegistrationPage;
+import com.automation.utils.CommonUtils;
 import com.automation.utils.FileUtils;
+import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -27,6 +29,7 @@ public class Mappings {
 	public static RegistrationPage registrationPage;
 	public static BasePage basepage;
 	public static APIHelper apihelper;
+	public static CommonUtils commonUtils;
 	
 	public WebDriver initDriver() {
 		try {
@@ -71,6 +74,7 @@ public class Mappings {
 	public void initUIClass() {
 		registrationPage = new RegistrationPage();
 		basepage = new BasePage();
+		commonUtils = new CommonUtils();
 	}
 	
 	public void initUtils() {
@@ -123,5 +127,18 @@ public class Mappings {
 		}
 	}
 	
+	public void setTransactionalData(String key, String value) {
+		commonUtils.setProperties("transactionalData", Thread.currentThread().getId()+"-"+key, value);
+	}
 	
+	public String getTransactionalData(String key) {
+		String transactionalData = commonUtils.getProperties("transactionalData").getProperty(Thread.currentThread().getId()+"-"+key);
+		log.info("Data read is : "+transactionalData);
+		ExtentCucumberAdapter.addTestStepLog("Data read is : "+transactionalData);
+		return transactionalData;
+	}
+	
+	public String getPageSelectors(String selectorKey) {
+		return commonUtils.getProperties("pageSelectors").getProperty(selectorKey);
+	}
 }
