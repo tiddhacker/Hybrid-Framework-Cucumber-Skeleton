@@ -12,13 +12,13 @@ pipeline {
 	
         stage('Preparing Environment') {
             steps {
-                echo '${params.JAVA_HOME}'
+                echo "${params.JAVA_HOME}"
                 echo "Preparing environment"
                 echo "Browser is ${params.Browser}"
                 echo "Tags is ${params.Tags}"
                 echo "Platform is ${params.Platform}"
                 echo "BranchName is ${params.BranchName}"
-				echo "Run on Sauce Labs Cloud set to %RemoteHubExecution%"
+				echo "Run on Sauce Labs Cloud set to ${params.RemoteHubExecution}"
 
 				script{
 					//cucumber tags
