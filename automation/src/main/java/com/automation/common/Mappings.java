@@ -75,8 +75,8 @@ public class Mappings {
 			sauceOpts.setCapability("name", System.getProperty("cucumber.filter.tags").split("@")[1]);
 			sauceOpts.setCapability("build", "Java-W3C-Examples");
 			sauceOpts.setCapability("seleniumVersion", "3.141.59");
-			sauceOpts.setCapability("username", "oauth-noreplytojenkins-39322");
-			sauceOpts.setCapability("accessKey", "ea304be6-4a90-4d31-928b-62e0eca26099");
+			sauceOpts.setCapability("username", System.getProperty("username"));
+			sauceOpts.setCapability("accessKey", System.getProperty("accessKey"));
 			sauceOpts.setCapability("tags", "w3c-chrome-tests");
 
 			DesiredCapabilities cap = new DesiredCapabilities();
