@@ -18,6 +18,7 @@ pipeline {
                 echo "Tags is ${params.Tags}"
                 echo "Platform is ${params.Platform}"
                 echo "BranchName is ${params.BranchName}"
+				echo "Run on Sauce Labs Cloud set to %RemoteHubExecution%"
 
 				script{
 					//cucumber tags
@@ -50,7 +51,7 @@ pipeline {
 		stage('Executing Test'){
 		    steps{
 		        echo "Executing Test"
-                bat 'mvn clean compile test -f automation/pom.xml -Dcucumber.filter.tags="%Tags%" -Dbrowser=%Browser% -Dplatform=%Platform% -DTestRunner=testRunner.java'
+                bat 'mvn clean compile test -f automation/pom.xml -Dcucumber.filter.tags="%Tags%" -Dbrowser=%Browser% -Dplatform=%Platform% -DRemoteHubExecution=%RemoteHubExecution% -DTestRunner=testRunner.java'
 		    }
 		}
     }
