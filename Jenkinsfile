@@ -12,7 +12,7 @@ pipeline {
 	
         stage('Preparing Environment') {
             steps {
-                echo "${params.JAVA_HOME}"
+                echo "${env.JAVA_HOME}"
                 echo "Preparing environment"
                 echo "Browser is ${params.Browser}"
                 echo "Tags is ${params.Tags}"
