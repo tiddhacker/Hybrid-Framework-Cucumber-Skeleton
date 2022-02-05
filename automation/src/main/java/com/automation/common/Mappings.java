@@ -21,6 +21,7 @@ import com.automation.pages.BasePage;
 import com.automation.pages.RegistrationPage;
 import com.automation.utils.CommonUtils;
 import com.automation.utils.FileUtils;
+import com.automation.utils.Xls_Reader;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -35,6 +36,7 @@ public class Mappings {
 	public static BasePage basepage;
 	public static APIHelper apihelper;
 	public static CommonUtils commonUtils;
+	public static Xls_Reader xlsReadr;
 
 	public WebDriver initDriver() {
 		if (System.getProperty("RemoteHubExecution").equalsIgnoreCase("No")) {
@@ -116,6 +118,7 @@ public class Mappings {
 	public void initUtils() {
 		log = LoggerFactory.getLogger(Mappings.class);
 		apihelper = new APIHelper();
+		xlsReadr = new Xls_Reader();
 	}
 
 	public void applicationSetup() {

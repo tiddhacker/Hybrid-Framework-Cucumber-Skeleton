@@ -6,12 +6,19 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.time.Duration;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import org.apache.poi.poifs.crypt.dsig.KeyInfoKeySelector;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.automation.common.Mappings;
 import com.automation.constants.Constant;
@@ -75,5 +82,36 @@ public class BasePage extends Mappings {
 		}
 
 		//for extent report ends
+		
+		public WebDriverWait getWebDriverWait(long waitDuration) {
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(waitDuration));
+			return wait;
+		}
+		
+		public void waitforsec(long sec) {
+			long millis = sec*1000;
+			try {
+				Thread.sleep(millis);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
+		public void sendKeysToElementByXpath(String selector, String value) {
+			waitforpageload();
+			getWebDriverWait(Constant.EXPLICIT_WAIT_DURATION).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getPageSelectors(selector))));
+			try {
+			getDriver().findElement(By.xpath(getPageSelectors(selector))).clear();
+			getDriver().findElement(By.xpath(getPageSelectors(selector))).sendKeys(value);
+			waitforsec(1);
+			captureScreenshot();
+			log.info("Value entered successfully. Value entered is --> "+value);
+			}
+			catch (Exception e) {
+				log.error("Unable to input values to element "+getPageSelectors(selector));
+				e.printStackTrace();
+			}
+		}
+		
 }

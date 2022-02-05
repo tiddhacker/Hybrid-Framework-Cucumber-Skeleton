@@ -9,7 +9,7 @@ public class RegisterSteps extends Mappings {
 
 	@Given("user open the application")
 	public void user_open_the_application() {
-		registrationPage.fillRegistrationForm();
+		registrationPage.test();
 	}
 
 	@Then("navigates to register page")
@@ -19,7 +19,7 @@ public class RegisterSteps extends Mappings {
 
 	@Then("fills the registration form details")
 	public void fills_the_registration_form_details() {
-	  
+		registrationPage.fillRegistrationDetails();
 	}
 	
 }

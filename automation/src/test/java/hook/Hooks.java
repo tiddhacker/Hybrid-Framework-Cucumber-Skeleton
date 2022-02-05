@@ -23,7 +23,6 @@ public class Hooks extends Mappings {
 	@Before("@API")
 	public void setupAPI() {
 		initUIClass();
-		initUIClass();
 		initUtils();	
 	}
 
