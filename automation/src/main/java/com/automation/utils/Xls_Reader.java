@@ -42,7 +42,7 @@ public class Xls_Reader {
 	
 	// returns the row count in a sheet
 
-	public int getRowCount(String excelFileName,String sheetName) {
+	public synchronized int getRowCount(String excelFileName,String sheetName) {
 		setPath(excelFileName);
 		int index = workbook.getSheetIndex(sheetName);
 		if (index == -1)
@@ -65,7 +65,7 @@ public class Xls_Reader {
 	 * @return
 	 */
 	// returns the data from a cell
-	public String getCellData(String excelFileName, String sheetName, String colName, int rowNum) {
+	public synchronized String getCellData(String excelFileName, String sheetName, String colName, int rowNum) {
 		setPath(excelFileName);
 		try {
 			if (rowNum <= 0)
@@ -143,7 +143,7 @@ public class Xls_Reader {
 	 */
 	// returns the data from a cell
 	@SuppressWarnings("deprecation")
-	public String getCellData(String excelFileName, String sheetName, int colNum, int rowNum) {
+	public synchronized String getCellData(String excelFileName, String sheetName, int colNum, int rowNum) {
 		setPath(excelFileName);
 		try {
 			if (rowNum <= 0)
@@ -198,7 +198,7 @@ public class Xls_Reader {
 	}
 
 	// returns true if data is set successfully else false
-	public boolean setCellData(String excelFileName, String sheetName, String colName, int rowNum, String data) {
+	public synchronized boolean setCellData(String excelFileName, String sheetName, String colName, int rowNum, String data) {
 		setPath(excelFileName);
 		try {
 			fis = new FileInputStream(path);
@@ -318,7 +318,7 @@ public class Xls_Reader {
 	// }
 
 	// returns true if sheet is created successfully else false
-	public boolean addSheet(String excelFileName,String sheetname) {
+	public synchronized boolean addSheet(String excelFileName,String sheetname) {
 		setPath(excelFileName);
 		FileOutputStream fileOut;
 		try {
@@ -335,7 +335,7 @@ public class Xls_Reader {
 
 	// returns true if sheet is removed successfully else false if sheet does
 	// not exist
-	public boolean removeSheet(String excelFileName,String sheetName) {
+	public synchronized boolean removeSheet(String excelFileName,String sheetName) {
 		setPath(excelFileName);
 		int index = workbook.getSheetIndex(sheetName);
 		if (index == -1)
@@ -355,7 +355,7 @@ public class Xls_Reader {
 	}
 
 	// returns true if column is created successfully
-	public boolean addColumn(String excelFileName, String sheetName, String colName) {
+	public synchronized boolean addColumn(String excelFileName, String sheetName, String colName) {
 		// System.out.println("**************addColumn*********************");
 		setPath(excelFileName);
 		try {
@@ -400,7 +400,7 @@ public class Xls_Reader {
 	}
 
 	// removes a column and all the contents
-	public boolean removeColumn(String excelFileName, String sheetName, int colNum) {
+	public synchronized boolean removeColumn(String excelFileName, String sheetName, int colNum) {
 		setPath(excelFileName);
 		try {
 			if (!isSheetExist(sheetName, excelFileName))
@@ -434,7 +434,7 @@ public class Xls_Reader {
 	}
 
 	// find whether sheets exists
-	public boolean isSheetExist(String excelFileName, String sheetName) {
+	public synchronized boolean isSheetExist(String excelFileName, String sheetName) {
 		setPath(excelFileName);
 		int index = workbook.getSheetIndex(sheetName);
 		if (index == -1) {
@@ -448,7 +448,7 @@ public class Xls_Reader {
 	}
 
 	// returns number of columns in a sheet
-	public int getColumnCount(String excelFileName,String sheetName) {
+	public synchronized int getColumnCount(String excelFileName,String sheetName) {
 		// check if sheet exists
 		setPath(excelFileName);
 		if (!isSheetExist(sheetName, sheetName))
@@ -488,7 +488,7 @@ public class Xls_Reader {
 	//
 	// return true;
 	// }
-	public int getCellRowNum(String excelFileName, String sheetName, String colName, String cellValue) {
+	public synchronized int getCellRowNum(String excelFileName, String sheetName, String colName, String cellValue) {
 		setPath(excelFileName);
 		for (int i = 2; i <= getRowCount(sheetName, excelFileName); i++) {
 			if (getCellData(sheetName, colName, excelFileName, i).equalsIgnoreCase(cellValue)) {

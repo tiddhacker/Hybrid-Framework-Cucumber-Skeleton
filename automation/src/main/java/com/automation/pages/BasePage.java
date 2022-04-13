@@ -22,9 +22,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.automation.common.Mappings;
 import com.automation.constants.Constant;
+import com.automation.utils.CommonUtils;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
-public class BasePage extends Mappings {
+public class BasePage extends CommonUtils {
 	
 	//for extent report
 		private static String screenshotname;
