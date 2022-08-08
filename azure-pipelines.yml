@@ -6,9 +6,6 @@ pool:
 
 steps:
 
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - task: Maven@3
   displayName: Install Maven dependencies
   inputs:
