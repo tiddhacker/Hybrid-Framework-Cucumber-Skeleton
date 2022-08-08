@@ -8,7 +8,7 @@ steps:
 
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'automation/pom.xml'
     goals: 'clean compile test'
     options: '-Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
     publishJUnitResults: false
