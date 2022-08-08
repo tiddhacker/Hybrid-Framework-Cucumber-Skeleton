@@ -11,7 +11,7 @@ steps:
 
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'automation/pom.xml'
     goals: 'mvn clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
