@@ -23,4 +23,4 @@ steps:
 - task: CmdLine@2
   displayName: Run groupname tests
   inputs:
-    script: mvn clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
+    script: mvn clean compile test -Dcucumber.filter.tags="@Registration" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
