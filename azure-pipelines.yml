@@ -2,7 +2,7 @@ trigger:
 - no
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 steps:
 - script: 'wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip'
@@ -24,4 +24,8 @@ steps:
     mavenSetM2Home: true
     goals: 'clean compile test'
     options: '-Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
+
+- task: Bash@3
+  inputs:
+    arguments: 'mvn -version'
    
