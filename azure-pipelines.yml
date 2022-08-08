@@ -2,7 +2,7 @@ trigger:
 - no
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-2019
 
 steps:
 
