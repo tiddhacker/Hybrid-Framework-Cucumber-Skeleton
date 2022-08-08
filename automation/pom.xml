@@ -159,6 +159,7 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<executable>${env.JAVA_HOME}\bin\javac</executable>
+					<useIncrementalCompilation>false</useIncrementalCompilation>
 					<compilerArgs>
     						<arg>-Xpkginfo:always</arg>
 					</compilerArgs>
