@@ -13,3 +13,4 @@ steps:
       https://github.com/tiddhacker/Hybrid-Framework-Cucumber-Skeleton.git
       pwd
       ls
+      mvn -f automation/pom.xml clean compile test -Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
