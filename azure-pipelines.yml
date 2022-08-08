@@ -2,7 +2,7 @@ trigger:
 - no
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
 
@@ -12,7 +12,7 @@ steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'automation/pom.xml'
-    goals: 'clean compile test -Dcucumber.filter.tags="@API" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
+    goals: 'clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
