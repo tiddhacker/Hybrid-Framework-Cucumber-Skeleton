@@ -1,0 +1,19 @@
+trigger:
+- no
+
+pool:
+  vmImage: windows-2019
+
+steps:
+
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'automation/pom.xml'
+    goals: 'clean compile test'
+    options: '-Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
