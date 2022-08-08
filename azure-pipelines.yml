@@ -2,15 +2,12 @@ trigger:
 - no
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 
 steps:
 
-- task: Bash@3
+- task: CmdLine@2
   inputs:
-    targetType: 'inline'
     script: |
-      https://github.com/tiddhacker/Hybrid-Framework-Cucumber-Skeleton.git
-      pwd
-      ls
-      mvn -f automation/pom.xml clean compile test -Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
+      git clone https://github.com/tiddhacker/Hybrid-Framework-Cucumber-Skeleton.git
+      dir /s /b /o:gn
