@@ -4,28 +4,8 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: 'wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip'
-- task: ExtractFiles@1
-  inputs:
-      archiveFilePatterns: 'apache-maven-3.5.4-bin.zip'
-      destinationFolder: '$(build.sourcesdirectory)/maven'
-
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'automation/pom.xml'
-    mavenOptions: '-Xmx3072m'
-    publishJUnitResults: false
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    mavenVersionOption: 'Path'
-    mavenDirectory: '$(build.sourcesdirectory)/maven/apache-maven-3.5.4'
-    mavenSetM2Home: true
-    goals: 'clean compile test'
-    options: '-Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
-
 - task: Bash@3
+displayName: 'Bash test'
   inputs:
-    arguments: 'mvn -version'
-   
+    targetType: 'inline'
+    script: 'mvn -version'
