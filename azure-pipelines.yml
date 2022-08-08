@@ -2,14 +2,14 @@ trigger:
 - no
 
 pool:
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
 
 steps:
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- task: Maven@3
+- task: Maven@3.205.1
   inputs:
     mavenPomFile: 'automation/pom.xml'
     goals: 'clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
