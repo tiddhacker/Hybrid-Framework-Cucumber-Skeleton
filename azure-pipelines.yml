@@ -2,7 +2,7 @@ trigger:
 - no
 
 pool:
-  vmImage: windows-2019
+  vmImage: ubuntu-latest
 
 steps:
 
@@ -20,4 +20,4 @@ steps:
 - task: CmdLine@2
   displayName: Run groupname tests
   inputs:
-    script: mvn clean compile test -Dcucumber.filter.tags="@Registration" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
+    script: mvn -f automation/pom.xml clean compile test -Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
