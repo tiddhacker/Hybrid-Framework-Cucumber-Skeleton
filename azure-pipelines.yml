@@ -5,20 +5,17 @@ pool:
   vmImage: windows-latest
 
 steps:
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo - task: Maven@3
+- task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-    goals: 'clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
-    publishJUnitResults: true
-#    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    testRunTitle: 'Selenium POM Skeleton'
+    goals: 'mvn clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
+    publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
-  displayName: 'Test run project from GIT'
