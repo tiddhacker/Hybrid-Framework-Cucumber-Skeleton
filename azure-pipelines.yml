@@ -1,5 +1,5 @@
 trigger:
-- main
+- no
 
 pool:
   vmImage: windows-latest
@@ -9,6 +9,16 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo - task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
+    publishJUnitResults: true
+#    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testRunTitle: 'Selenium POM Skeleton'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+  displayName: 'Test run project from GIT'
