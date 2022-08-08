@@ -10,12 +10,17 @@ steps:
   displayName: 'Run a one-line script'
 
 - task: Maven@3
+  displayName: Install Maven dependencies
   inputs:
     mavenPomFile: 'automation/pom.xml'
-    goals: 'clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java'
     publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+    
+- task: CmdLine@2
+  displayName: Run groupname tests
+  inputs:
+    script: mvn clean compile test -Dcucumber.filter.tags="@Test" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
