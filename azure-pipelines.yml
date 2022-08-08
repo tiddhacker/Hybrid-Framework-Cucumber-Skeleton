@@ -12,3 +12,4 @@ steps:
     script: |
       https://github.com/tiddhacker/Hybrid-Framework-Cucumber-Skeleton.git
       pwd
+      ls
