@@ -14,7 +14,7 @@ steps:
 - task: Maven@1
   displayName: 'Running cucumber tag $(tag)'
   inputs:
-    mavenPomFile: '$(Parameters.mavenPOMFile)'
+    mavenPomFile: 'automation/pom.xml'
     goals: test
     options: '-Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
     publishJUnitResults: false
