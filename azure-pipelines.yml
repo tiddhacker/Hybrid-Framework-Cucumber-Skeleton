@@ -5,11 +5,10 @@ pool:
   vmImage: windows-latest
 
 
+steps:
+  
 - script: |
-   - task: CmdLine@2
-     displayName: 'Maven Final Command'
-  inputs:
-    script: 'echo test -Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
+   echo 'test -Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
 
    steps:
 - task: Maven@1
