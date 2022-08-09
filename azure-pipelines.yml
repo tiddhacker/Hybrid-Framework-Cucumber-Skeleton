@@ -4,12 +4,37 @@ trigger:
 pool:
   vmImage: windows-latest
 
-steps:
 
-- task: CmdLine@2
+steps:
+- script: |
+   echo test -Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java
+
+   steps:
+- task: Maven@1
+  displayName: 'Running cucumber tag $(tag)'
   inputs:
-    script: |
-      git clone https://github.com/tiddhacker/Hybrid-Framework-Cucumber-Skeleton.git
-      dir /s /b /o:gn
-      cd
-      mvn -f automation/pom.xml clean compile test -Dcucumber.filter.tags="@Regression" -Dbrowser=Chrome -Dplatform=Linux -DRemoteHubExecution=No -DTestRunner=testRunner.java
+    mavenPomFile: '$(Parameters.mavenPOMFile)'
+    goals: test
+    options: '-Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
+    publishJUnitResults: false
+    mavenAuthenticateFeed: false
+    
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: 'automation/target/report/**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
+  
+- task: JakubRumpca.azure-pipelines-html-report.PublishHtmlReport.PublishHtmlReport@1
+  displayName: 'Publish Html Report'
+  inputs:
+    tabName: 'HTML-Report for $(tag)'
+    reportDir: '$(build.artifactstagingdirectory)/automation/target/report/report.html'
+    
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+  condition: succeededOrFailed()
