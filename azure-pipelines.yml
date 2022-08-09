@@ -20,7 +20,8 @@ steps:
     mavenPomFile: 'automation/pom.xml'
     goals: test
     options: '-Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
-    publishJUnitResults: false
+    testResultsFiles: '$(system.defaultworkingdirectory)/automation/target/surefire-reports/TEST-*.xml'
+    testRunTitle: 'Attachment for $(tag)'
     mavenAuthenticateFeed: false
     
 - task: CopyFiles@2
