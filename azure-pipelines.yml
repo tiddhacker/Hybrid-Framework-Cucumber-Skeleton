@@ -10,7 +10,7 @@ steps:
 - script: |
    echo 'test -Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
 
-   steps:
+   
 - task: Maven@1
   displayName: 'Running cucumber tag $(tag)'
   inputs:
