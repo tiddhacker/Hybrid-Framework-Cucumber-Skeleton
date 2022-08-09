@@ -8,7 +8,8 @@ pool:
 steps:
   
 - script: |
-   echo 'test -Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
+   displayName: 'Running cucumber tag $(tag)'
+   echo 'mvn test -Dcucumber.filter.tags="@$(tag)" -Dbrowser=$(browser) -Dplatform=Linux -DRemoteHubExecution=$(remoteHubExecution) -DTestRunner=testRunner.java'
 
    
 - task: Maven@1
