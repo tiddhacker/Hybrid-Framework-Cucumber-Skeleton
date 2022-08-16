@@ -1,10 +1,16 @@
 package com.automation.utils;
 
+import static com.sun.tools.sjavac.Log.info;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFCreationHelper;
@@ -13,6 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.automation.constants.Constant;
+import com.sun.tools.sjavac.Log;
 
 @SuppressWarnings("deprecation")
 public class Xls_Reader {
@@ -23,6 +30,7 @@ public class Xls_Reader {
 	private XSSFSheet sheet = null;
 	private XSSFRow row = null;
 	private XSSFCell cell = null;
+	private Iterator rowIter;
 
 		public void setPath(String excelFileName) {
 			String filePath = Constant.DATA_FACTORY+excelFileName;
@@ -80,7 +88,7 @@ public class Xls_Reader {
 			row = sheet.getRow(0);
 			for (int i = 0; i < row.getLastCellNum(); i++) {
 				// System.out.println(row.getCell(i).getStringCellValue().trim());
-				if (row.getCell(i).getStringCellValue().trim().equals(colName.trim()))
+				if (row.getCell(i).getStringCellValue().trim().equalsIgnoreCase(colName.trim()))
 					col_Num = i;
 			}
 			if (col_Num == -1)
@@ -498,5 +506,48 @@ public class Xls_Reader {
 		return -1;
 
 	}
-
+	
+	@SuppressWarnings("rawtypes")
+	public synchronized int getLastRowNumberForColumn(String excelFileName, String sheetName, String colName) {
+		String data=null;
+		int[] dataCount = null;
+		setPath(excelFileName);
+		int col_Num = 0;
+		
+		try {
+	    	int index = workbook.getSheetIndex(sheetName);
+	        sheet = workbook.getSheetAt(index);
+	        rowIter = sheet.rowIterator();
+	        Row r = (Row)rowIter.next();
+	        short lastCellNum = r.getLastCellNum();
+	        dataCount = new int[lastCellNum];
+	        int col = 0;
+	        //rowIter = sheet.rowIterator();  //if you want to EXCLUDE header from sheet comment this step
+	        while(rowIter.hasNext()) {
+				Iterator cellIter = ((Row)rowIter.next()).cellIterator();
+	            while(cellIter.hasNext()) {
+	                Cell cell = (Cell)cellIter.next();
+	                col = cell.getColumnIndex();
+	                dataCount[col] += 1;
+	                DataFormatter df = new DataFormatter();
+	                data = df.formatCellValue(cell);
+	                //System.out.println("Data: " + data);
+	            }
+	        }
+	        
+	        row = sheet.getRow(0);
+	        for (int i = 0; i < row.getLastCellNum(); i++) {
+				// System.out.println(row.getCell(i).getStringCellValue().trim());
+				if (row.getCell(i).getStringCellValue().trim().equalsIgnoreCase(colName))
+					col_Num = i;
+			}
+	        
+	    }
+	    catch(Exception e) {
+	        e.printStackTrace();
+	    }
+		return dataCount[col_Num]+1;
+	}
+	
+	
 }

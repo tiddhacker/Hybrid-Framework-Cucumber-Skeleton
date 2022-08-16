@@ -12,10 +12,11 @@ public class RegistrationPage extends BasePage{
 
 	
 	public void fillRegistrationDetails() {
-		int rowCount= xlsReadr.getRowCount("Registration.xlsx", "RegistrationDetailSheet");
+		int rowCount= xlsReadr.getLastRowNumberForColumn("Registration.xlsx", "RegistrationDetailSheet", "FirstName");
 		for (int i = 2; i <= rowCount; i++) {
 			sendKeysToElementByXpath("firstname", xlsReadr.getCellData("Registration.xlsx", "RegistrationDetailSheet", "FirstName", i));
 		}
 	}
+	
 	
 }
