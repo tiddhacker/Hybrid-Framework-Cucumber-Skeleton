@@ -8,7 +8,7 @@ import com.automation.common.Mappings;
 import com.automation.constants.Constant;
 
 public class CommonUtils extends Mappings {
-
+	
 	public Boolean setProperties(String fileName, String key, String value) {
 		
 		Boolean status=false;

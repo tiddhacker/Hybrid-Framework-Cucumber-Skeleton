@@ -14,7 +14,8 @@ public class RegisterSteps extends Mappings {
 
 	@Then("navigates to register page")
 	public void navigates_to_register_page() {
-		
+		//bootstrap selector example
+		//registrationPage.testMultiselectDiv();
 	}
 
 	@Then("fills the registration form details")

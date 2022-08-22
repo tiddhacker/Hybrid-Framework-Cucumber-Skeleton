@@ -16,7 +16,11 @@ public class RegistrationPage extends BasePage{
 		for (int i = 2; i <= rowCount; i++) {
 			sendKeysToElementByXpath("firstname", xlsReadr.getCellData("Registration.xlsx", "RegistrationDetailSheet", "FirstName", i));
 		}
+		System.out.println(xlsReadr.getDataList("Registration.xlsx", "RegistrationDetailSheet", "FirstName"));
 	}
 	
+	public void testMultiselectDiv() {
+		multiselectFromDiv("dropdown", xlsReadr.getDataList("Registration.xlsx", "RegistrationDetailSheet", "FirstName"));
+	}
 	
 }

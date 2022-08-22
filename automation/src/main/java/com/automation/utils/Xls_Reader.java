@@ -4,6 +4,7 @@ import static com.sun.tools.sjavac.Log.info;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 
@@ -547,6 +548,15 @@ public class Xls_Reader {
 	        e.printStackTrace();
 	    }
 		return dataCount[col_Num]+1;
+	}
+	
+	public ArrayList<String> getDataList(String fileName, String sheetName, String colName) {
+		ArrayList<String> dataList =  new ArrayList<String>();
+		int rowCount= getLastRowNumberForColumn(fileName, sheetName, colName);
+		for (int i = 2; i <= rowCount; i++) {
+			dataList.add(getCellData(fileName, sheetName, colName, i));
+		}
+		return dataList;
 	}
 	
 	

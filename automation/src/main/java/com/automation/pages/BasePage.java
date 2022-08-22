@@ -7,16 +7,21 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import org.apache.poi.poifs.crypt.dsig.KeyInfoKeySelector;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -27,6 +32,8 @@ import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 public class BasePage extends CommonUtils {
 	
+	protected Actions action = new Actions(getDriver());
+	protected JavascriptExecutor js = (JavascriptExecutor)getDriver();
 	//for extent report
 		private static String screenshotname;
 
@@ -112,6 +119,36 @@ public class BasePage extends CommonUtils {
 			catch (Exception e) {
 				log.error("Unable to input values to element "+getPageSelectors(selector));
 				e.printStackTrace();
+			}
+		}
+		
+		// multi select dropdown bootstrap selector
+		public void multiselectFromDiv(String selector, ArrayList<String> dataList) {
+			waitforpageload();
+			getWebDriverWait(Constant.EXPLICIT_WAIT_DURATION).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getPageSelectors(selector))));
+			js.executeScript("arguments[0].scrollIntoView(true);", getDriver().findElement(By.xpath(getPageSelectors(selector))));
+			waitforsec(3);
+			try {
+				//action.moveToElement(getDriver().findElement(By.xpath(getPageSelectors(selector)))).click().build().perform();
+				js.executeScript("arguments[0].click();", getDriver().findElement(By.xpath(getPageSelectors(selector))));
+				log.info("Click success on "+getPageSelectors(selector));
+				waitforsec(2);
+				List<WebElement> actualList = getDriver().findElements(By.xpath(getPageSelectors("divDropdownValues")));
+			for (int i=0 ; i<dataList.size(); i++) {
+				for (WebElement temp : actualList) {
+					if(dataList.get(i).equals(temp.getText().trim())) {
+						log.info("**** Option "+dataList.get(i)+ " is present in the dropdown list ****");
+						log.info("**** Trying to click -->"+dataList.get(i));
+						//input tag name for particular list value under dropdown
+						temp.findElement(By.tagName("input")).click();
+						break;
+					}
+				}
+			}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				Assert.fail("Failed to select from multiselect dropdown: "+getPageSelectors(selector));
 			}
 		}
 		

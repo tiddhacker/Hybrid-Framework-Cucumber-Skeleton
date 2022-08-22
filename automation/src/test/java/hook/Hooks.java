@@ -14,8 +14,8 @@ public class Hooks extends Mappings {
 
 	@Before("@UI")
 	public void setup() {
-		initUtils();
 		initDriver();
+		initUtils();
 		applicationSetup();
 		initUIClass();
 	}
