@@ -13,25 +13,25 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import org.apache.poi.poifs.crypt.dsig.KeyInfoKeySelector;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import com.automation.common.Mappings;
 import com.automation.constants.Constant;
 import com.automation.utils.CommonUtils;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 public class BasePage extends CommonUtils {
 	
+	private Logger log= LoggerFactory.getLogger(BasePage.class);
 	protected Actions action = new Actions(getDriver());
 	protected JavascriptExecutor js = (JavascriptExecutor)getDriver();
 	//for extent report
@@ -110,6 +110,7 @@ public class BasePage extends CommonUtils {
 			waitforpageload();
 			getWebDriverWait(Constant.EXPLICIT_WAIT_DURATION).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getPageSelectors(selector))));
 			try {
+			getDriver().findElement(By.xpath(getPageSelectors(selector))).click();
 			getDriver().findElement(By.xpath(getPageSelectors(selector))).clear();
 			getDriver().findElement(By.xpath(getPageSelectors(selector))).sendKeys(value);
 			waitforsec(1);
@@ -151,5 +152,32 @@ public class BasePage extends CommonUtils {
 				Assert.fail("Failed to select from multiselect dropdown: "+getPageSelectors(selector));
 			}
 		}
+		
+	public void waitandclick(String selector) {
+		WebElement element = getDriver().findElement(By.xpath(getPageSelectors(selector)));
+		waitforpageload();
+		getWebDriverWait(Constant.EXPLICIT_WAIT_DURATION)
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(getPageSelectors(selector))));
+		for (int i = 1; i <= 10; i++) {
+			try {
+				if (element.isEnabled()) {
+					log.info("Trying to click "+i+" time");
+					element.click();
+					log.info("Click success on "+getPageSelectors(selector));
+					break;
+				} else
+					Assert.fail("Element is not enabled ! Check: " + getPageSelectors(selector));
+			} catch (Exception e) {
+				log.info("Click failed ! Waiting for 1 second...");
+				waitforsec(1);
+			}
+		}
+	}
+	
+	public void switchtoframe(String id) {
+		getDriver().switchTo().frame(id);
+		waitforsec(2);
+		log.info("...Switched to frame: "+id);
+	}
 		
 }

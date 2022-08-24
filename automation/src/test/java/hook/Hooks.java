@@ -1,6 +1,10 @@
 package hook;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.automation.common.Mappings;
+import com.automation.pages.BasePage;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -8,6 +12,8 @@ import io.cucumber.java.Scenario;
 
 public class Hooks extends Mappings {
 
+	private Logger log= LoggerFactory.getLogger(Hooks.class);
+	
 	public Hooks() {
 		super();
 	}

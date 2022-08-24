@@ -23,4 +23,15 @@ public class RegisterSteps extends Mappings {
 		registrationPage.fillRegistrationDetails();
 	}
 	
+	@Then("fills the form details")
+	public void fills_the_form_details() {
+		registrationPage.fillSelectorsHubForm();
+	}
+	
+	@Then("submits the form")
+	public void submits_the_form() {
+		registrationPage.submitForm();
+	}
+	
+	
 }

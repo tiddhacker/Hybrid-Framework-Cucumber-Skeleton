@@ -23,4 +23,14 @@ public class RegistrationPage extends BasePage{
 		multiselectFromDiv("dropdown", xlsReadr.getDataList("Registration.xlsx", "RegistrationDetailSheet", "FirstName"));
 	}
 	
+	public void fillSelectorsHubForm() {
+		sendKeysToElementByXpath("userEmail", xlsReadr.getCellData("Registration.xlsx", "SelectorsHubForm", "User Email", 2));
+		sendKeysToElementByXpath("password", xlsReadr.getCellData("Registration.xlsx", "SelectorsHubForm", "Password", 2));
+		sendKeysToElementByXpath("company", xlsReadr.getCellData("Registration.xlsx", "SelectorsHubForm", "Company", 2));
+	}
+	
+	public void submitForm() {
+		waitandclick("submitBtn");
+	}
+	
 }

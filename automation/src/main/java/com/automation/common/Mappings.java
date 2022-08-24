@@ -30,13 +30,13 @@ public class Mappings {
 
 	private WebDriver driver;
 	private static ThreadLocal<WebDriver> drivers = new ThreadLocal<WebDriver>();
-	public static Logger log;
+	private static Logger log;
 	public static FileUtils fileutils = new FileUtils();
-	public static RegistrationPage registrationPage;
 	public static BasePage basepage;
 	public static APIHelper apihelper;
 	public static CommonUtils commonUtils;
 	public static Xls_Reader xlsReadr;
+	public static RegistrationPage registrationPage;
 
 	public WebDriver initDriver() {
 		if (System.getProperty("RemoteHubExecution").equalsIgnoreCase("No")) {

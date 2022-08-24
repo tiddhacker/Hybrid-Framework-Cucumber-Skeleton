@@ -2,6 +2,9 @@ package com.automation.pages;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
 
 import io.restassured.*;
@@ -10,6 +13,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class APIHelper extends BasePage {
 	
+	private Logger log= LoggerFactory.getLogger(APIHelper.class);
 	private String baseURI=null;
 	private RequestSpecification REQ_SPEC;
 	private Response response=null;

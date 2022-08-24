@@ -1,7 +1,5 @@
 package com.automation.utils;
 
-import static com.sun.tools.sjavac.Log.info;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -20,7 +18,6 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.automation.constants.Constant;
-import com.sun.tools.sjavac.Log;
 
 @SuppressWarnings("deprecation")
 public class Xls_Reader {
