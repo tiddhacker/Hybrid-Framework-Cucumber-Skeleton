@@ -2,9 +2,7 @@ trigger:
 - no
 
 pool:
-  name: windows-latest
-  demands: maven
-
+  vmImage: windows-latest
 
 steps:
   
