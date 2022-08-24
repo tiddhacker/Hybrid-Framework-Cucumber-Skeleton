@@ -2,9 +2,7 @@ trigger:
 - no
 
 pool:
-  name: Sounak Agent Pool
-  demands: maven
-
+  vmImage: windows-latest
 
 steps:
   
