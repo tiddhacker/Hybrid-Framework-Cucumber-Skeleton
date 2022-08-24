@@ -2,7 +2,7 @@ trigger:
 - no
 
 pool:
-  name: Sounak Agent Pool
+  name: windows-latest
   demands: maven
 
 
