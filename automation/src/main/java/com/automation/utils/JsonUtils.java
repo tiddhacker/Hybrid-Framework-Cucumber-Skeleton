@@ -22,7 +22,7 @@ import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 
 import com.automation.constants.Constant;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class JsonUtils {

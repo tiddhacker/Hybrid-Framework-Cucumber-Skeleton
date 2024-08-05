@@ -4,7 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<properties>
 		<cucumber.version>6.6.1</cucumber.version>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
+		<selenium.version>4.23.0</selenium.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
 	</properties>
@@ -12,6 +13,19 @@
 	<artifactId>automation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-manager</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
@@ -25,26 +39,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-remote-driver</artifactId>
-			<version>4.0.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>5.3.1</version>
 		</dependency>
-		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>5.0.3</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
@@ -145,6 +145,19 @@
 			<version>5.0.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.28</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.10.2</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -180,6 +193,7 @@
 					<parallel>methods</parallel>
 					<useUnlimitedThreads>true</useUnlimitedThreads>
 					<includes>
+						<!--suppress UnresolvedMavenProperty -->
 						<include>${TestRunner}</include>
 					</includes>
 				</configuration>

@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
+import com.automation.utils.*;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
@@ -19,12 +20,7 @@ import org.slf4j.LoggerFactory;
 import com.automation.pages.APIHelper;
 import com.automation.pages.BasePage;
 import com.automation.pages.RegistrationPage;
-import com.automation.utils.CommonUtils;
-import com.automation.utils.FileUtils;
-import com.automation.utils.Xls_Reader;
 import com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Mappings {
 
@@ -37,6 +33,8 @@ public class Mappings {
 	public static CommonUtils commonUtils;
 	public static Xls_Reader xlsReadr;
 	public static RegistrationPage registrationPage;
+	public static DataStorage dataStorage;
+	public static CustomAssert customAssert;
 
 	public WebDriver initDriver() {
 		if (System.getProperty("RemoteHubExecution").equalsIgnoreCase("No")) {
@@ -49,15 +47,18 @@ public class Mappings {
 						options.addArguments("--no-sandbox");
 						options.addArguments("window-size=1920x1080");
 						options.addArguments("--disable-dev-shm-usage");
+						options.addArguments("--remote-allow-origins=*");
 					}
-					options.addArguments("--incognito");
-					WebDriverManager.chromedriver().setup();
+//					options.addArguments("--incognito");
+//					WebDriverManager.chromedriver().setup();
+					System.out.println("Setting driver");
 					driver = new ChromeDriver(options);
+					System.out.println(driver);
 					drivers.set(driver);
 					break;
 
 				case "FIREFOX":
-					WebDriverManager.firefoxdriver().setup();
+//					WebDriverManager.firefoxdriver().setup();
 					driver = new FirefoxDriver();
 					drivers.set(driver);
 					break;
@@ -87,10 +88,10 @@ public class Mappings {
 			cap.setCapability("platformName", "windows 10");
 
 			if (System.getProperty("browser").equalsIgnoreCase("Chrome")) {
-				WebDriverManager.chromedriver().setup();
+//				WebDriverManager.chromedriver().setup();
 				cap.setCapability("browserName", "chrome");
 			} else if (System.getProperty("browser").equalsIgnoreCase("Firefox")) {
-				WebDriverManager.firefoxdriver().setup();
+//				WebDriverManager.firefoxdriver().setup();
 				cap.setCapability("browserName", "firefox");
 			}
 			// https://oauth-noreplytojenkins-39322:ea304be6-4a90-4d31-928b-62e0eca26099@ondemand.eu-central-1.saucelabs.com:443/wd/hub
@@ -119,6 +120,8 @@ public class Mappings {
 		log = LoggerFactory.getLogger(Mappings.class);
 		apihelper = new APIHelper();
 		xlsReadr = new Xls_Reader();
+		dataStorage = new DataStorage();
+		customAssert = new CustomAssert();
 	}
 
 	public void applicationSetup() {

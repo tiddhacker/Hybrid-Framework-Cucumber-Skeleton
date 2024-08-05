@@ -179,5 +179,15 @@ public class BasePage extends CommonUtils {
 		waitforsec(2);
 		log.info("...Switched to frame: "+id);
 	}
+	
+	public String getText(String selector) {
+		String text=null;
+		getWebDriverWait(10).until(ExpectedConditions.visibilityOf(getDriver().findElement(By.xpath(getPageSelectors(selector)))));
+		text = getDriver().findElement(By.xpath(getPageSelectors(selector))).getText();
+		if (text==null) {
+			text = getDriver().findElement(By.xpath(getPageSelectors(selector))).getAttribute("value");
+		}
+	return text;
+	}
 		
 }
