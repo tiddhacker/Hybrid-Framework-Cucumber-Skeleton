@@ -1,7 +1,7 @@
 @UI
 Feature: Practice Test Automation website
 
-@practicetestautomation @pageObjectModelDemo
+@practicetestautomation @pageObjectModelPOC
 Scenario: Login to application using encrypted password
 Given user open the application
 And input the username "student" and password "loginPassword"
