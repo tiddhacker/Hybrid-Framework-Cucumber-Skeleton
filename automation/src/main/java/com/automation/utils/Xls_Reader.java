@@ -66,7 +66,7 @@ public class Xls_Reader {
 	 * 
 	 * 
 	 * @param sheetName
-	 * @param colNum
+	 * @param colName
 	 * @param rowNum
 	 * @return
 	 */
