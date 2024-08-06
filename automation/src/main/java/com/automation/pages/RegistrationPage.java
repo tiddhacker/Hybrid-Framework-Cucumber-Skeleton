@@ -2,6 +2,10 @@ package com.automation.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +15,17 @@ import com.automation.utils.EncryptionUtility;
 public class RegistrationPage extends BasePage{
 	
 	private Logger log= LoggerFactory.getLogger(RegistrationPage.class);
+
+	WebDriver driver;
+
+	@FindBy(xpath = "//input[@id='username']")
+	WebElement userNameInput;
+
+	public RegistrationPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
 	
 	public void test() {
 		setTransactionalData("1stpage", "my value 1");
@@ -124,7 +139,7 @@ public class RegistrationPage extends BasePage{
 	public void login(String username, String password) {
 		waitforpageload();
 		waitforsec(1);
-		sendKeysToElementByXpath("usern", username);
+		sendKeysToElementByXpath(userNameInput, username);
 		waitforsec(1);
 		sendKeysToElementByXpath("pass", EncryptionUtility.decrypt(getPageSelectors(password)));
 		waitforsec(1);

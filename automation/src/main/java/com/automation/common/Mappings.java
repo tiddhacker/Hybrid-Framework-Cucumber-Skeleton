@@ -111,7 +111,7 @@ public class Mappings {
 	}
 
 	public void initUIClass() {
-		registrationPage = new RegistrationPage();
+		registrationPage = new RegistrationPage(getDriver());
 		basepage = new BasePage();
 		commonUtils = new CommonUtils();
 	}

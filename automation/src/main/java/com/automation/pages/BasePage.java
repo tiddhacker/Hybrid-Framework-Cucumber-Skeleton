@@ -122,6 +122,24 @@ public class BasePage extends CommonUtils {
 				e.printStackTrace();
 			}
 		}
+
+
+	public void sendKeysToElementByXpath(WebElement element, String value) {
+		waitforpageload();
+		getWebDriverWait(Constant.EXPLICIT_WAIT_DURATION).until(ExpectedConditions.visibilityOf(element));
+		try {
+			element.click();
+			element.clear();
+			element.sendKeys(value);
+			waitforsec(1);
+			captureScreenshot();
+			log.info("Value entered successfully. Value entered is --> "+value);
+		}
+		catch (Exception e) {
+			log.error("Unable to input values to element "+element);
+			e.printStackTrace();
+		}
+	}
 		
 		// multi select dropdown bootstrap selector
 		public void multiselectFromDiv(String selector, ArrayList<String> dataList) {
