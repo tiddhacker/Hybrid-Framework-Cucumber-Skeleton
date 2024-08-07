@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.automation.utils.EncryptionUtility;
 
-public class RegistrationPage extends BasePage{
+public class RegistrationPage extends BasePage implements pageStructure {
 	
 	private Logger log= LoggerFactory.getLogger(RegistrationPage.class);
 
@@ -161,5 +161,10 @@ public class RegistrationPage extends BasePage{
 		waitandclick("addbtn");
 		waitforpageload();
 		sendKeysToElementByXpath("row2", "Burger");
+	}
+
+	@Override
+	public void isLoaded() {
+		//write logic to check if page is loaded
 	}
 }
