@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<properties>
 		<cucumber.version>6.6.1</cucumber.version>
@@ -9,7 +9,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
 	</properties>
-	<groupId>PHPTravels</groupId>
+	<groupId>My_Test_Suite</groupId>
 	<artifactId>automation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
@@ -24,7 +24,6 @@
 			<artifactId>selenium-manager</artifactId>
 			<version>${selenium.version}</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -74,22 +73,30 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>2.9.0</version>
+		</dependency>
 
+		<!-- SLF4J API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.36</version>
+		</dependency>
 
-
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<!-- Log4j2 Implementation -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.16.0</version>
+			<version>2.20.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>2.16.0</version>
+			<version>2.20.0</version>
 		</dependency>
-
 
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 		<dependency>
@@ -191,11 +198,16 @@
 					</systemPropertyVariables>
 					<systemPropertiesFile>src/main/java/com/automation/config/envConfig.properties</systemPropertiesFile>
 					<parallel>methods</parallel>
-					<useUnlimitedThreads>true</useUnlimitedThreads>
+					<useUnlimitedThreads>false</useUnlimitedThreads>
+					<perCoreThreadCount>false</perCoreThreadCount>
+					<threadCount>3</threadCount>
 					<includes>
 						<!--suppress UnresolvedMavenProperty -->
 						<include>${TestRunner}</include>
 					</includes>
+					<argLine>
+						--add-opens java.base/java.lang=ALL-UNNAMED
+					</argLine>
 				</configuration>
 			</plugin>
 		</plugins>
